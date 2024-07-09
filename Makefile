@@ -3,26 +3,26 @@ CC      := cc
 CFLAGS  := -pedantic -Wall -Wno-deprecated-declarations -Os
 LDFLAGS := -lX11
 
-all: options dwmb
+all: options dwmblocks
 
 options:
-	@echo dwmb build options:
+	@echo dwmblocks build options:
 	@echo "CFLAGS  = ${CFLAGS}"
 	@echo "LDFLAGS = ${LDFLAGS}"
 	@echo "CC      = ${CC}"
 
-dwmb: dwmb.c config.h
-	${CC} -o dwmb dwmb.c ${CFLAGS} ${LDFLAGS} -DSCRIPT'(s)="\"$(shell pwd)/scripts/\""s'
+dwmblocks: dwmb.c config.h
+	${CC} -o dwmblocks dwmb.c ${CFLAGS} ${LDFLAGS} -DSCRIPT'(s)="\"$(shell pwd)/scripts/\""s'
 
 clean:
 	rm -f *.o *.gch dwmb
 
-install: dwmb
+install: dwmblocks
 	mkdir -p ${DESTDIR}${PREFIX}/bin
-	cp -f dwmb ${DESTDIR}${PREFIX}/bin
-	chmod 755 ${DESTDIR}${PREFIX}/bin/dwmb
+	cp -f dwmblocks ${DESTDIR}${PREFIX}/bin
+	chmod 755 ${DESTDIR}${PREFIX}/bin/dwmblocks
 
 uninstall:
-	rm -f ${DESTDIR}${PREFIX}/bin/dwmb
+	rm -f ${DESTDIR}${PREFIX}/bin/dwmblocks
 
 .PHONY: all options clean install uninstall
